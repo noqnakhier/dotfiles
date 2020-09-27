@@ -8,4 +8,17 @@ function UnsetProxy {
     unset https_proxy
 }
 
-alias em="emacs -nw"
+export GOPATH=~/Dev/projects/go
+export GOBIN=~/Dev/gobin
+export GO111MODULE=on
+
+export PATH=/usr/local/sbin:/usr/local/opt/openssl@1.1/bin:$GOBIN:~/.emacs.d/bin:$PATH
+
+alias vim='nvim'
+alias vi='nvim'
+alias nv='nvim'
+alias em='emacs -nw'
+
+# Rust Programming Language
+export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
