@@ -34,17 +34,22 @@ exec --no-startup-id nm-applet
 exec --no-startup-id fcitx
 
 # picom
-exec --no-startup-id picom 
+exec --no-startup-id picom -b
 
 # 壁纸
 exec_always --no-startup-id feh --recursive --randomize --bg-fill ~/Pictures/backgrounds/
 bindsym $mod+b exec --no-startup-id feh --recursive --randomize --bg-fill ~/Pictures/backgrounds
 bindsym $mod+Shift+b exec --no-startup-id feh --recursive --randomize --bg-fill ~/Pictures/exclusive
 
+# Start polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
 # 禁止窗口标题栏以使用gaps
 for_window [class=".*"] border pixel 2
 for_window [class="VirtualBox Manager"] border pixel 18
-gaps inner 12
+for_window [class="vlc"] floating enable
+for_window [window_role="pop-up"] floating enable
+gaps inner 7
 
 # Virtualbox 设置成为Stack方式
 
@@ -195,6 +200,6 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-}
+#bar {
+#        status_command i3status
+#}
