@@ -55,7 +55,7 @@
 
 ;; cnfonts config
 (when (display-graphic-p)
-  (progn
+  (when IS-MAC
     (set-face-attribute
      'default nil
      :font (font-spec :name "-*-Noto Mono for Powerline-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"
@@ -69,9 +69,23 @@
        (font-spec :name "-*-Hiragino Sans GB-normal-normal-normal-*-*-*-*-*-p-0-iso10646-1"
                   :weight 'normal
                   :slant 'normal
-                  :size 18)))
+                  :size 18))))
+  (when IS-LINUX
 
-    )
+    (set-face-attribute
+     'default nil
+     :font (font-spec :name "-DAMA-Ubuntu Mono-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"
+                      :weight 'normal
+                      :slant 'normal
+                      :size 12.5))
+    (dolist (charset '(kana han symbol cjk-misc bopomofo))
+      (set-fontset-font
+       (frame-parameter nil 'font)
+       charset
+       (font-spec :name "-WQYF-WenQuanYi Micro Hei Mono-normal-normal-normal-*-*-*-*-*-*-0-iso10646-1"
+                  :weight 'normal
+                  :slant 'normal
+                  :size 13.0))))
   )
 
 ;; Org mode settings
@@ -85,13 +99,8 @@
   ;; 将代码块根据对应的语言进行高亮
   (setq org-src-fontify-natively t)
   ;; 设置状态的颜色样式
-  (setf org-todo-keyword-faces '(("TODO" (:foreground "white" :background "red"))
-                               ("HAND" (:foreground "white" :background "green"))
-                               ("DONE" (:foreground "white" :background "blue"))
-                               ("CANCELED" (:foreground "white" :background "grey"))))
   (setq org-export-with-sub-superscripts (quote {}))
-  (setq org-html-htmlize-output-type 'css)
-  )
+  (setq org-html-htmlize-output-type 'css))
 
 
 
@@ -106,21 +115,7 @@
         company-idle-delay 0
         company-require-match nil
         company-etags-ignore-case t
-        company-auto-commit t)
-  (company-tng-configure-default))
-
-
-;; Python lsp settings
-(use-package! lsp-python-ms
-  :defer t
-  :demand
-                                        ; :ensure nil
-  :hook (python-mode . lsp)
-  :config
-  (setq lsp-python-ms-dir
-        (expand-file-name "~/Dev/python-language-server/output/bin/Release"))
-  (setq lsp-python-ms-executable
-        "~/Dev/python-language-server/output/bin/Release/osx-x64/publish/Microsoft.Python.LanguageServer"))
+        company-auto-commit t))
 
 ;; rust lang
 (add-hook 'before-save-hook (lambda () (when (eq 'rust-mode major-mode)

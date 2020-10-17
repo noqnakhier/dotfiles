@@ -29,10 +29,10 @@ alert = #bd2c40
 
 [bar/mybar]
 ;monitor = ${env:MONITOR:HDMI-1}
-dpi-x = 168
-dpi-y = 168
+dpi-x = 192
+dpi-y = 192
 width = 100%
-height = 50
+height = 60
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 0
@@ -44,36 +44,37 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 4
+border-size = 0
 border-color = #00000000
 
 padding-left = 0
 padding-right = 2
 
-module-margin-left = 1
-module-margin-right = 2
+module-margin-left = 3
+module-margin-right = 4
 
 ;font-0 = fixed:pixelsize=10;1
 ;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 ;font-2 = siji:pixelsize=10;1
-font-0 = Ubuntu Condensed:style=Regular:size=10;1
+;font-0 = Ubuntu Condensed:style=Regular:size=11;1
+font-0 = Noto Sans CJK SC:style=Regular:size=10;1
 font-1 = Noto Sans Mono CJK SC:style=Regular:size=10;1
 font-2 = Font Awesome 5 Brands Regular:style=Regular:size=10;1
 font-3 = Font Awesome 5 Free Solid:style=Solid:size=10;1
 font-4 = Font Awesome 5 Free Regular:style=Regular:size=10;1
 font-5 = Source Code Pro:style=Regular:size=10;1
 
-modules-left = bspwm
+modules-left = i3 bspwm
 modules-center = xwindow
-modules-right = pulseaudio memory cpu temperature date powermenu
+modules-right = pulseaudio memory cpu temperature eth date powermenu
 
 tray-position = right
-tray-padding = 2
-tray-maxsize = 30
+tray-padding = 5
+tray-maxsize = 48
 ;tray-background = #0063ff
 
-wm-restack = bspwm
-;wm-restack = i3
+;wm-restack = bspwm
+wm-restack = i3
 
 ;override-redirect = true
 
@@ -214,16 +215,16 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "CPU "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = "  "
+format-prefix-foreground = ${colors.foreground}
 format-underline = #f90000
 label = %percentage:2%%
-
+PU
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "MEM "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = "  "
+format-prefix-foreground = ${colors.foreground}
 format-underline = #4bffdc
 label = %percentage_used%%
 
@@ -251,12 +252,12 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = vboxnet0
+interface = enp0s31f6
 interval = 3.0
 
-format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
+format-connected-underline = #0a6cf5
+format-connected-prefix = "  "
+format-connected-prefix-foreground = ${colors.foreground}
 label-connected = %local_ip%
 
 format-disconnected =
@@ -269,14 +270,14 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-date =
+date = %b %d
 date-alt = " %Y-%m-%d"
 
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = "  "
+format-prefix-foreground = ${colors.foreground}
 format-underline = #0a6cf5
 
 label = %date% %time%
@@ -284,15 +285,15 @@ label = %date% %time%
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume-prefix = "VOL "
-format-volume-prefix-foreground = ${colors.foreground-alt}
+format-volume-prefix = "  "
+format-volume-prefix-foreground = ${colors.foreground}
 format-volume-underline = #4bffdc
 
 format-volume = <label-volume>
 label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
-format-muted-prefix = "VOL "
+format-muted-prefix = "  "
 label-muted = MUTED
 label-muted-foreground = #666
 
@@ -379,8 +380,8 @@ type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
 
-format-prefix = "TEMP "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = "  "
+format-prefix-foreground = ${colors.foreground}
 format-prefix-underline = ${colors.secondary}
 format = <label>
 format-underline = #f50a4d
@@ -405,9 +406,9 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = POWER
+label-open = 
 label-open-foreground = ${colors.secondary}
-label-close = CANCEL
+label-close = Cancel
 label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
