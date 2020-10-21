@@ -6,5 +6,5 @@ export XMODIFIERS="@im=fcitx"
 
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
-#exec bspwm
-exec i3
+exec bspwm
+#exec i3
