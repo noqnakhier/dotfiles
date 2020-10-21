@@ -94,20 +94,33 @@
   (setq org-startup-indented nil)
   ;; 设置TODO的状态数量
   (setq org-todo-keywords
-     '((sequence "TODO" "HAND" "|" "DONE")
-       (sequence "|" "CANCELED")))
+        '((sequence "TODO" "HAND" "|" "DONE")
+          (sequence "|" "CANCELED")))
   ;; 将代码块根据对应的语言进行高亮
   (setq org-src-fontify-natively t)
   ;; 设置状态的颜色样式
   (setq org-export-with-sub-superscripts (quote {}))
-  (setq org-html-htmlize-output-type 'css))
+  (setq org-html-htmlize-output-type 'css)
+  ;; Org Capture 设置
+  (global-set-key (kbd "C-c c") 'org-capture)
+  (setq org-capture-templates nil)
+  (add-to-list 'org-capture-templates '("t" "Tasks"))
+(add-to-list 'org-capture-templates
+             '("tp" "个人任务" entry
+               (file+headline "~/org/task.org" "Personal")
+               "* TODO %^{任务名}\n%u\n%a\n"))
+(add-to-list 'org-capture-templates
+             '("tw" "工作任务" entry
+               (file+headline "~/org/task.org" "Work")
+               "* TODO %^{任务名}\n%u\n%a\n" :clock-in t :clock-resume t))
+  )
 
 
 
 ;;(add-hook! prog-mode 'global-company-mode)
 (use-package! company
-;;  :commands (company-mode global-company-mode company-complete
-;;             company-complete-common company-manual-begin company-grab-line)
+  ;;  :commands (company-mode global-company-mode company-complete
+  ;;             company-complete-common company-manual-begin company-grab-line)
   :config
   (setq company-show-numbers nil
         company-minimum-prefix-length 0
@@ -115,11 +128,13 @@
         company-idle-delay 0
         company-require-match nil
         company-etags-ignore-case t
-        company-auto-commit t))
+        company-auto-commit t)
+  (add-to-list 'company-backends 'company-yasnippet))
 
 ;; rust lang
 (add-hook 'before-save-hook (lambda () (when (eq 'rust-mode major-mode)
-                                           (lsp-format-buffer))))
+                                         (lsp-format-buffer))))
 
-(after! prog-mode
-  (set-company-backend! 'company-yasnippet))
+;;(use-package! yasnippet
+;;  :config
+;;  (setq yas-snippet-dirs '( "~/.doom.d/snippets")))
