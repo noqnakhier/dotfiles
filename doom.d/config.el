@@ -100,14 +100,8 @@
        (sequence "|" "CANCELED")))
   ;; 将代码块根据对应的语言进行高亮
   (setq org-src-fontify-natively t)
-  ;; 设置状态的颜色样式
-  (setf org-todo-keyword-faces '(("TODO" (:foreground "white" :background "red"))
-                               ("HAND" (:foreground "white" :background "green"))
-                               ("DONE" (:foreground "white" :background "blue"))
-                               ("CANCELED" (:foreground "white" :background "grey"))))
   (setq org-export-with-sub-superscripts (quote {}))
-  (setq org-html-htmlize-output-type 'css)
-  )
+  (setq org-html-htmlize-output-type 'css))
 
 
 
@@ -122,21 +116,7 @@
         company-idle-delay 0
         company-require-match nil
         company-etags-ignore-case t
-        company-auto-complete t)
-  (company-tng-configure-default))
-
-
-;; Python lsp settings
-(use-package! lsp-python-ms
-  :defer t
-  :demand
-                                        ; :ensure nil
-  :hook (python-mode . lsp)
-  :config
-  (setq lsp-python-ms-dir
-        (expand-file-name "~/Dev/python-language-server/output/bin/Release"))
-  (setq lsp-python-ms-executable
-        "~/Dev/python-language-server/output/bin/Release/osx-x64/publish/Microsoft.Python.LanguageServer"))
+        company-auto-complete t))
 
 ;; rust lang
 (add-hook 'before-save-hook (lambda () (when (eq 'rust-mode major-mode)
