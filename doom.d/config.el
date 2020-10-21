@@ -29,9 +29,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(when IS-MAC
-  (setq org-directory "~/PersonalOneDrive/OneDrive/org"))
-
+(setq org-directory "~/org")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -100,6 +98,7 @@
        (sequence "|" "CANCELED")))
   ;; 将代码块根据对应的语言进行高亮
   (setq org-src-fontify-natively t)
+  ;; 设置状态的颜色样式
   (setq org-export-with-sub-superscripts (quote {}))
   (setq org-html-htmlize-output-type 'css))
 
@@ -116,8 +115,11 @@
         company-idle-delay 0
         company-require-match nil
         company-etags-ignore-case t
-        company-auto-complete t))
+        company-auto-commit t))
 
 ;; rust lang
 (add-hook 'before-save-hook (lambda () (when (eq 'rust-mode major-mode)
                                            (lsp-format-buffer))))
+
+(after! prog-mode
+  (set-company-backend! 'company-yasnippet))
