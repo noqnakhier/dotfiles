@@ -94,7 +94,7 @@
   (setq org-startup-indented nil)
   ;; 设置TODO的状态数量
   (setq org-todo-keywords
-        '((sequence "TODO" "HAND" "|" "DONE")
+        '((sequence "TODO" "|" "DONE")
           (sequence "|" "CANCELED")))
   ;; 将代码块根据对应的语言进行高亮
   (setq org-src-fontify-natively t)
@@ -103,16 +103,13 @@
   (setq org-html-htmlize-output-type 'css)
   ;; Org Capture 设置
   (global-set-key (kbd "C-c c") 'org-capture)
+  (global-set-key (kbd "C-c l") 'org-store-link)
+
   (setq org-capture-templates nil)
-  (add-to-list 'org-capture-templates '("t" "Tasks"))
-(add-to-list 'org-capture-templates
-             '("tp" "个人任务" entry
-               (file+headline "~/org/task.org" "Personal")
-               "* TODO %^{任务名}\n%u\n%a\n"))
-(add-to-list 'org-capture-templates
-             '("tw" "工作任务" entry
-               (file+headline "~/org/task.org" "Work")
-               "* TODO %^{任务名}\n%u\n%a\n" :clock-in t :clock-resume t))
+  (add-to-list 'org-capture-templates
+               '("t" "添加任务" entry
+                 (file+headline "~/org/task.org" "Task")
+                 "* TODO %^{任务名}\n %?"))
   )
 
 
@@ -135,6 +132,3 @@
 (add-hook 'before-save-hook (lambda () (when (eq 'rust-mode major-mode)
                                          (lsp-format-buffer))))
 
-;;(use-package! yasnippet
-;;  :config
-;;  (setq yas-snippet-dirs '( "~/.doom.d/snippets")))
