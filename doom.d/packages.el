@@ -50,3 +50,4 @@
 ;(unpin! t)
 ;
 (package! cnfonts)
+(package! org-roam-server)

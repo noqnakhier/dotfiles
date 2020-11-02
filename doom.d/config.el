@@ -112,6 +112,10 @@
                  "* TODO %^{任务名}\n %?"))
   )
 
+(add-to-list 'org-capture-templates
+             '("j" "日记" file+datetree (file "~/org/journal.org")
+               "* %U - %^{heading}\n  %?"))
+
 
 
 ;;(add-hook! prog-mode 'global-company-mode)
@@ -131,4 +135,21 @@
 ;; rust lang
 (add-hook 'before-save-hook (lambda () (when (eq 'rust-mode major-mode)
                                          (lsp-format-buffer))))
+(use-package! org-roam
+  :init
+  (setq org-roam-directory "~/roam")
+  (setq org-roam-graph-viewer "/usr/bin/open"))
 
+
+(use-package! org-roam-server
+  :config
+  (setq org-roam-server-host "127.0.0.1"
+        org-roam-server-authenticate nil
+        org-roam-server-port 9999
+        org-roam-server-export-inline-images t
+        org-roam-server-serve-files nil
+        org-roam-server-network-poll t
+        org-roam-server-network-arrows nil
+        org-roam-server-network-label-truncate t
+        org-roam-server-network-label-truncate-length 60
+        org-roam-server-network-label-wrap-length 20))
