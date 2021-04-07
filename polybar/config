@@ -73,8 +73,8 @@ tray-padding = 5
 tray-maxsize = 48
 ;tray-background = #0063ff
 
-;wm-restack = bspwm
-wm-restack = i3
+wm-restack = bspwm
+;wm-restack = i3
 
 ;override-redirect = true
 
@@ -219,7 +219,6 @@ format-prefix = "  "
 format-prefix-foreground = ${colors.foreground}
 format-underline = #f90000
 label = %percentage:2%%
-PU
 [module/memory]
 type = internal/memory
 interval = 2

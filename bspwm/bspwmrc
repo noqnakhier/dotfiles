@@ -3,7 +3,7 @@
 sxhkd &
 nm-applet &
 picom &
-fcitx &
+fcitx5 &
 
 feh --recursive --randomize --bg-fill ~/Pictures/backgrounds
 ~/.config/polybar/launch.sh
@@ -12,7 +12,7 @@ bspc monitor -d I II III IV V VI VII VIII
 
 bspc config border_width         1
 bspc config top_padding         58
-#bspc config window_gap          10
+bspc config window_gap          30
 bspc config focused_border_color "#ff0000"
 
 bspc config split_ratio          0.51
