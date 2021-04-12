@@ -1,0 +1,12 @@
+{
+    "go.goplsOptions": {
+        "completeUnimported": false
+    },
+    "go.tags": {
+        "options": "json=",
+        "transform":"camelcase"
+    },
+
+    "python.jediEnabled": false
+}
+

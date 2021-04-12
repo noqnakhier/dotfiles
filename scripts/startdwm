@@ -1,0 +1,22 @@
+#!/bin/bash
+
+DIRNAME=$(dirname $(readlink -f $0))
+
+
+volume() {
+    value=$(amixer get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\].*/\1/')
+}
+
+while true
+do
+    VOL=$(amixer get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\].*/\1/')
+    LOCALTIME=$(date "+%Y-%m-%d %H:%M")
+    TEMP="$(($(cat /sys/class/thermal/thermal_zone0/temp) / 1000))℃"
+
+    xsetroot -name " 🔊 $VOL | 🌡️ $TEMP | 📅 $LOCALTIME"
+    sleep 30s
+done &
+
+while true; do
+	dwm 2> ~/.dwm.log
+done

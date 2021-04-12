@@ -1,5 +1,6 @@
 [options]
-font = Source Code Pro 11
+font = Monosapce 10
+font = Source Code Pro 10
 
 [colors]
 # Base16 Monokai
@@ -9,7 +10,8 @@ foreground          = #f8f8f2
 foreground_bold     = #f8f8f2
 cursor              = #f8f8f2
 cursor_foreground   = #272822
-background          = #272822
+#background          = #272822
+background = rgba(27, 28, 22, 0.85)
 
 # 16 color space
 
@@ -50,3 +52,6 @@ color18 = #383830
 color19 = #49483e
 color20 = #a59f85
 color21 = #f5f4f1
+
+# trasparent
+
